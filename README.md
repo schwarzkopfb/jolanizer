@@ -4,7 +4,7 @@ Egy Chrome bővítmény azoknak, akik szintén unják, hogy az Edit a leggyakori
 
 ## Mi ez?
 
-Semmi extra. Minden betöltött weboldalon lecseréli (többé-kevésbé) az összes előforduló `Edit` feliratot valami más mókás magyar női keresztnévre.
+Semmi extra. Minden betöltött weboldalon lecseréli (többé-kevésbé) az összes előforduló `Edit` feliratot valami más mókás magyar női keresztnévre (főleg Jolánra).
 A lista bővítését célzó pull requestek üdvözölve vannak.  
 
 ## Telepítés
