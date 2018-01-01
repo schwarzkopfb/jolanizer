@@ -27,10 +27,8 @@ var REPLACEMENTS = [
     'Skolasztika'
 ]
 
-var port     = chrome.runtime.connect(),
-    next     = createRandomGeneratorFunction(getWeights()),
-    elements = document.getElementsByTagName('*'),
-    counter  = 0
+var next     = createRandomGeneratorFunction(getWeights()),
+    elements = document.getElementsByTagName('*')
 
 for (var i = 0, l = elements.length; i < l; i++) {
     var element = elements[ i ]
@@ -46,28 +44,15 @@ for (var i = 0, l = elements.length; i < l; i++) {
                     return keepCase(orig, REPLACEMENTS[ next() ])
                 })
 
-            if (repd !== text) {
+            if (repd !== text)
                 element.replaceChild(document.createTextNode(repd), node)
-                counter++
-            }
         }
     }
 }
 
-window.addEventListener('message', function(event) {
-    // we only accept messages from ourselves
-    if (event.source != window)
-        return;
-
-    if (event.data.type && (event.data.type == "FROM_PAGE")) {
-        console.log("Content script received: " + event.data.text);
-        port.postMessage(event.data.text)
-    }
-}, false)
-
 function getWeights() {
     var l = REPLACEMENTS.length,
-        result = [ Math.abs(l / 3) ]
+        result = [ Math.round(l / 3) ]
 
     for (var i = 1; i < l; i++)
         result.push(1)
@@ -113,22 +98,13 @@ function keepCase(orig, text) {
 
 'use strict'
 
-var message = 'weights must be an array of non-negative numbers'
-
-function assert() {}
-
 function createRandomGeneratorFunction(weights) {
-    assert(Array.isArray(weights), message)
-
     var totalWeight = 0,
         length = weights.length,
         i = length
 
-    while (i--) {
-        var current = weights[ i ]
-        assert(current >= 0, message)
-        totalWeight += current
-    }
+    while (i--)
+        totalWeight += weights[ i ]
 
     return function random() {
         var i = length,
