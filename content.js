@@ -39,8 +39,6 @@ for (var i = 0, l = elements.length; i < l; i++) {
         if (node.nodeType === 3) {
             var text = node.nodeValue,
                 repd = text.replace(RX_REPLACER, function (orig) {
-                    console.log(next())
-
                     return keepCase(orig, REPLACEMENTS[ next() ])
                 })
 
